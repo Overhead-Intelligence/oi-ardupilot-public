@@ -173,3 +173,15 @@ env.bak/
 venv.bak/
 autotest_result_*_junit.xml
 .python-version
+
+# Overhead Intelligence: paths the OI release flow needs, which patterns above
+# would otherwise swallow. "*.d" (GCC dependency files) also matches the
+# changelog.d directory, and "/scripts/" hides the release hook. Git cannot
+# re-include a file whose parent directory is excluded, so each directory has to
+# be un-excluded first. Without this, "git add changelog.d/<entry>.md" in a
+# pull request silently does nothing and the entry never reaches the release
+# notes.
+!changelog.d/
+!/scripts/
+/scripts/*
+!/scripts/release-assets.sh

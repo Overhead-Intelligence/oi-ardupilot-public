@@ -1,0 +1,16 @@
+name: "SW 3. Release"
+
+# Releases the version branch vX.Y selected in "Use workflow from", after its release pull request
+# is merged: tags it, creates the GitHub release, moves main when it is the newest version, opens
+# the merge-back pull request into development and deletes old version branches. The release
+# tools live in Overhead-Intelligence/.github-private (sw/README.md); this file only calls them.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sw:
+    uses: Overhead-Intelligence/.github-private/.github/workflows/sw-release.yml@main
+    secrets: inherit
